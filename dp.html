@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Clock and Calendar</title>
+  <style>
+    body {
+      font-family:'Times New Roman', Times, serif;
+      text-align: center;
+      margin-top: 85px;
+      background-color: aquamarine;
+
+    
+
+    .container {
+      display: inline-block;
+      padding: 20px;
+      background: rgb(50, 82, 240);
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(239, 232, 49, 0.2);
+    }
+
+    #clock {
+      font-size: 50px;
+      font-weight:bolder
+      margin-bottom: 25px;
+    }
+
+    #calendar {
+      font-size: 30px;
+      color: #f044c2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="clock">--:--:--</div>
+    <div id="calendar">Loading...</div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    function updateCalendar() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = now.toLocaleDateString(undefined, options);
+      document.getElementById('calendar').textContent = formattedDate;
+    }
+
+    
+    updateClock();
+    updateCalendar();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
